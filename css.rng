@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"         
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:css="http://www.w3.org/1996/css"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         ns="http://www.w3.org/1996/css">
+
+
+  <a:documentation>CSS properties as XML attributes</a:documentation>
+
+  <start combine="choice">
+    <notAllowed/>
+  </start>
+
+  <define name="css_att.version">
+    <attribute name="css:version">
+      <value>3.0-variant le-tex_Hub-1.1</value>
+    </attribute>
+  </define>
+
+  <div>
+    <a:documentation>The css:rule element corresponds to named styles in a Word processor or in a DTP application. 
+      A mapping mechanism from the host vocabulary’s styled content to CSSa rules is provided by an attribute
+      css:rule-selection-attribute. For example, css:rule-selection-attribute="role" and css:rule-selection-attribute="class" 
+      mean: intepret @role="foo bar" or @class="foo bar", respectively, as @css:rules="foo bar". A CSSa rule is almost like 
+      a rule in the CSS sense.
+      Except that in CSS, a rule consists of a selector and properties. In CSSa, it consists of a name and properties.
+      If the host vocabulary’s class attribute is mapped to the css:rules, class="foo bar" tells a processing application
+      to use the named CSSa rules foo and bar, which, as CSS rules, would look like:
+      .foo { … }
+      .bar { … }
+      So a named CSSa rule corresponds to a CSS rule with a selector by class name, and the same properties (in different 
+      syntaxes though).
+    </a:documentation>
+  
+    <define name="css_element.rules">
+      <element name="css:rules">
+        <zeroOrMore>
+          <ref name="css_element.rule"/>
+        </zeroOrMore>
+      </element>
+    </define>
+
+    <define name="css_element.rule">
+      <element name="css:rule">
+        <interleave>
+          <ref name="selector_group"/>
+          <optional>
+            <attribute name="layout-type">
+              <ref name="css_rule_att.layout-type.model"/>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="xml:lang"/>
+          </optional>
+          <ref name="custom.css-like.rule.attributes"/>
+          <ref name="css_attributes"/>
+        </interleave>
+        <!-- For tab declarations; empty by default: --> 
+        <ref name="custom.css_element_model"/>
+      </element>
+    </define>
+
+    <define name="selector_group">
+      <a:documentation>This is currently a very sketchy concept of also storing CSS and XPath selectors and calculated
+        priority numbers for the selectors. The idea behind this is that Grit’s CSS parser
+        (https://subversion.le-tex.de/common/css-expand/) might eventually switch over to validatable CSSa for its internal
+        XML representation of a document’s CSS.</a:documentation>
+      <attribute name="name">
+        <a:documentation>A subset of the spec at http://www.w3.org/TR/CSS21/syndata.html#characters
+        (what’s missing here: chars U+00A0 and above; quoted chars)</a:documentation>
+        <data type="token">
+          <param name="pattern">-?[_a-zA-Z][\-_a-zA-Z0-9]+</param>
+        </data>        
+      </attribute>
+      <optional>
+        <attribute name="native-name"/>
+      </optional>
+      <optional>
+        <group>
+          <attribute name="xpath"/>
+          <optional>
+            <attribute name="xslt-priority"/>
+          </optional>
+        </group>
+      </optional>
+      <optional>
+        <group>
+          <attribute name="css-selector"/>
+          <optional>
+            <attribute name="css-priority"/>
+          </optional>
+        </group>
+      </optional>
+    </define>
+
+    <define name="css_rule_att.layout-type.model">
+      <choice>
+        <value>para</value>
+        <value>inline</value>
+        <value>table</value>
+        <value>cell</value>
+        <value>object</value>
+      </choice>
+    </define>
+
+    <a:documentation>Redefine in the host vocabulary:</a:documentation>
+    <define name="custom.css_element_model">
+      <empty/>
+    </define>
+    <define name="custom.css-like.rule.attributes">
+      <empty/>
+    </define>
+    
+    <define name="css_meta_att.apply-rules">
+      <attribute name="css:apply-rules">
+        <ref name="css_meta_att.apply-rules.model"/>
+      </attribute>
+    </define>
+
+    <define name="css_meta_att.apply-rules.model">
+      <list>
+        <oneOrMore>
+          <data type="token"/>
+        </oneOrMore>
+      </list>
+    </define>
+
+    <a:documentation>In the subtree starting at the element with the attribute css:map-attribute="role", the @role
+      attribute should be interpreted as a @css:rules attribute. Precedence/merging: In case that there is
+      @css:rule-selection-attribute in scope and there is @css:rules present, the
+      @css:rule-selection-attribute mapping declaration must be ignored for that element (not for its
+      descendants though, subject to this rule).</a:documentation>
+    <define name="css_meta_att.rule-map">
+      <attribute name="css:rule-selection-attribute">
+        <data type="QName" />
+      </attribute>
+    </define>
+
+  </div>
+  
+  <div>
+    <a:documentation>css_pattern.*
+    The purpose of these pattern definitions is to model the permitted values for CSS properties.</a:documentation>
+  
+    <define name="css_pattern.absolute-size">
+      <data type="token">
+        <param name="pattern">(xx-small|x-small|small|medium|large|x-large|xx-large)</param>
+      </data>
+    </define>
+  
+    <define name="css_pattern.auto">
+      <value>auto</value>
+    </define>
+
+    <define name="css_pattern.boolean">
+      <choice>
+        <value>true</value>
+        <value>false</value>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.border-style">
+      <choice>
+        <ref name="css_pattern.none"/>
+        <value>hidden</value>
+        <value>dotted</value>
+        <value>dashed</value>
+        <value>solid</value>
+        <value>double</value>
+        <value>groove</value>
+        <value>ridge</value>
+        <value>inset</value>
+        <value>outset</value>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.border-width">
+      <choice>
+        <ref name="css_pattern.length"/>
+        <value>thin</value>
+        <value>medium</value>
+        <value>thick</value>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.color">
+      <choice>
+        <data type="token">
+          <param name="pattern">(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">#[0-9a-fA-F]{3}</param>
+        </data>
+        <data type="token">
+          <param name="pattern">#[0-9a-fA-F]{6}</param>
+        </data>
+        <data type="token">
+          <param name="pattern">rgb\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">rgb\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">rgba\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">rgba\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\)</param>
+        </data>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.direction">
+      <choice>
+        <value>ltr</value>
+        <value>rtl</value>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.display">
+      <!-- CSS 2.1 values -->
+      <choice>
+        <value>inline</value>
+        <value>block</value>
+        <value>list-item</value>
+        <value>inline-block</value>
+        <value>table</value>
+        <value>inline-table</value>
+        <value>table-row-group</value>
+        <value>table-header-group</value>
+        <value>table-footer-group</value>
+        <value>table-row</value>
+        <value>table-column-group</value>
+        <value>table-column</value>
+        <value>table-cell</value>
+        <value>table-caption</value>
+        <value>none</value>
+        <value>inherit</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.each-line">
+      <value>each-line</value>
+    </define>
+  
+    <define name="css_pattern.font-family">
+      <a:documentation>Room for improvement, but a regex pattern is complicated: http://www.w3.org/TR/css3-fonts/#font-family-prop</a:documentation>
+      <data type="string"/>
+    </define>
+
+    <define name="css_pattern.font-size">
+      <choice>
+        <ref name="css_pattern.absolute-size"/>
+        <ref name="css_pattern.relative-size"/>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.font-stretch">
+      <choice>
+        <data type="token">
+          <param name="pattern">((ultra|extra|semi)-)?(condensed|expanded)</param>
+        </data>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.normal"/>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.font-style">
+      <choice>
+        <data type="token">
+          <param name="pattern">italic|oblique</param>
+        </data>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.normal"/>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.font-variant-css21">
+      <choice>
+        <value>small-caps</value>
+        <ref name="css_pattern.normal"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.font-weight">
+      <choice>
+        <data type="token">
+          <param name="pattern">bold|bolder|lighter|[1-9]00</param>
+        </data>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.normal"/>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.hanging">
+      <value>hanging</value>
+    </define>
+  
+    <define name="css_pattern.hyphens">
+      <choice>
+        <value>none</value>
+        <value>manual</value>
+        <ref name="css_pattern.auto"/>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.inherit">
+      <value>inherit</value>
+    </define>
+  
+    <define name="css_pattern.length">
+      <data type="token">
+        <param name="pattern">\+?(\.[0-9]+|[0-9]+\.?([0-9]+)?)(px|em|ex|in|cm|mm|pt|pc)</param>
+      </data>
+    </define>
+  
+    <define name="css_pattern.line-height">
+      <choice>
+        <ref name="css_pattern.normal"/>
+        <ref name="css_pattern.non-negative-number"/>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.page-break-inside">
+      <choice>
+        <ref name="css_pattern.auto"/>
+        <value>avoid</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.page-break">
+      <choice>
+        <ref name="css_pattern.page-break-inside"/>
+        <value>always</value>
+        <value>left</value>
+        <value>right</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.string-literal">
+      <a:documentation>A quoted string</a:documentation>
+      <choice>
+        <data type="token">
+          <param name="pattern">'.*'</param>
+        </data>
+        <data type="token">
+          <param name="pattern">".*"</param>
+        </data>
+      </choice>
+    </define>
+
+    <define name="css_pattern.list-style-type">
+      <a:documentation>
+        CSS Lists and Counters Module Level 3
+        W3C Working Draft 24 May 2011
+        http://www.w3.org/TR/css3-lists/
+      </a:documentation>
+      <choice>
+        <ref name="css_pattern.string-literal"/>
+        <ref name="css_pattern.list-style-type.predefined"/>
+        <ref name="css_pattern.counter-style.custom"/>
+        <value>inline</value>
+        <ref name="css_pattern.none"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.list-style-type.predefined">
+      <choice>
+        <ref name="css_pattern.counter-style.repeating"/>
+        <ref name="css_pattern.counter-style.numeric"/>
+        <ref name="css_pattern.counter-style.alphabetic"/>
+        <ref name="css_pattern.counter-style.symbolic"/>
+        <ref name="css_pattern.counter-style.non-repeating"/>
+        <ref name="css_pattern.counter-style.additive"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.counter-style.repeating">
+      <choice>
+        <value>box</value>
+        <value>check</value>
+        <value>circle</value>
+        <value>diamond</value>
+        <value>disc</value>
+        <value>dash</value>
+        <value>square</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.counter-style.numeric">
+      <choice>
+        <value>arabic-indic</value>
+        <value>bengali</value>
+        <value>binary</value>
+        <value>burmese</value>
+        <value>cambodian</value>
+        <value>cjk-decimal</value>
+        <value>decimal</value>
+        <value>devanagari</value>
+        <value>eastern-nagari</value>
+        <value>fullwidth-decimal</value>
+        <value>gujarati</value>
+        <value>gurmukhi</value>
+        <value>kannada</value>
+        <value>khmer</value>
+        <value>lower-hexadecimal</value>
+        <value>lao</value>
+        <value>lepcha</value>
+        <value>malayalam</value>
+        <value>marathi</value>
+        <value>mongolian</value>
+        <value>myanmar</value>
+        <value>new-base-60</value>
+        <value>octal</value>
+        <value>oriya</value>
+        <value>persian</value>
+        <value>super-decimal</value>
+        <value>tamil</value>
+        <value>telugu</value>
+        <value>tibetan</value>
+        <value>thai</value>
+        <value>upper-hexadecimal</value>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.counter-style.alphabetic">
+      <choice>
+        <value>afar</value>
+        <value>agaw</value>
+        <value>ari</value>
+        <value>blin</value>
+        <value>cjk-earthly-branch</value>
+        <value>cjk-heavenly-stem</value>
+        <value>dizi</value>
+        <value>fullwidth-lower-alpha</value>
+        <value>fullwidth-upper-alpha</value>
+        <value>gedeo</value>
+        <value>gumuz</value>
+        <value>hadiyya</value>
+        <value>harari</value>
+        <value>hindi</value>
+        <value>hiragana-iroha</value>
+        <value>hiragana</value>
+        <value>kaffa</value>
+        <value>katakana-iroha</value>
+        <value>katakana</value>
+        <value>kebena</value>
+        <value>kembata</value>
+        <value>konso</value>
+        <value>korean-consonant</value>
+        <value>korean-syllable</value>
+        <value>kunama</value>
+        <value>lower-alpha</value>
+        <value>lower-belorussian</value>
+        <value>lower-bulgarian</value>
+        <value>lower-greek</value>
+        <value>lower-macedonian</value>
+        <value>lower-oromo-qubee</value>
+        <value>lower-russian</value>
+        <value>lower-russian-full</value>
+        <value>lower-serbo-croatian</value>
+        <value>lower-ukrainian</value>
+        <value>lower-ukrainian-full</value>
+        <value>meen</value>
+        <value>oromo</value>
+        <value>saho</value>
+        <value>sidama</value>
+        <value>silti</value>
+        <value>thai-alphabetic</value>
+        <value>tigre</value>
+        <value>upper-alpha</value>
+        <value>upper-belorussian</value>
+        <value>upper-bulgarian</value>
+        <value>upper-macedonian</value>
+        <value>upper-oromo-qubee</value>
+        <value>upper-russian</value>
+        <value>upper-russian-full</value>
+        <value>upper-serbo-croatian</value>
+        <value>upper-ukrainian</value>
+        <value>upper-ukrainian-full</value>
+        <value>wolaita</value>
+        <value>yemsa</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.counter-style.symbolic">
+      <choice>
+        <value>asterisks</value>
+        <value>footnotes</value>
+        <value>lower-alpha-symbolic</value>
+        <value>upper-alpha-symbolic</value>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.counter-style.non-repeating">
+      <choice>
+        <value>circled-decimal</value>
+        <value>circled-lower-latin</value>
+        <value>circled-upper-latin</value>
+        <value>circled-korean-consonants</value>
+        <value>circled-korean-syllables</value>
+        <value>decimal-leading-zero</value>
+        <value>dotted-decimal</value>
+        <value>double-circled-decimal</value>
+        <value>filled-circled-decimal</value>
+        <value>fullwidth-upper-roman</value>
+        <value>fullwidth-lower-roman</value>
+        <value>parenthesized-decimal</value>
+        <value>parenthesized-lower-latin</value>
+        <value>parenthesized-hangul-consonants</value>
+        <value>parenthesized-hangul-syllable</value>
+        <value>persian-abjad</value>
+        <value>persian-alphabetic</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.counter-style.additive">
+      <choice>
+        <value>hebrew</value>
+        <value>simple-upper-roman</value>
+        <value>simple-lower-roman</value>
+        <value>upper-roman</value>
+        <value>lower-roman</value>
+        <value>lower-armenian</value>
+        <value>upper-armenian</value>
+        <value>armenian</value>
+        <value>georgian</value>
+        <value>ancient-tamil</value>
+        <value>japanese-informal</value>
+        <value>japanese-formal</value>
+        <value>korean-hangul-formal</value>
+        <value>korean-hanja-informal</value>
+        <value>greek</value>
+      </choice>
+    </define>
+
+    <!-- TODO: custom type must be declared in a @counter-style rule; not sure whether to allow it in CSSa -->
+    <define name="css_pattern.counter-style.custom">
+      <empty/>
+    </define>
+    
+    <define name="css_pattern.margin">
+      <choice>
+        <ref name="css_pattern.potentially-negative-length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.auto"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.none">
+      <value>none</value>
+    </define>
+
+    <define name="css_pattern.normal">
+      <value>normal</value>
+    </define>
+  
+    <define name="css_pattern.non-negative-number">
+      <data type="token">
+        <param name="pattern">(\.[0-9]+|[0-9]+\.?([0-9]+)?)</param>
+      </data>
+    </define>
+  
+    <define name="css_pattern.padding">
+      <choice>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.percentage"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.percentage">
+      <data type="token">
+        <param name="pattern">(\.[0-9]+|[0-9]+\.?([0-9]+)?)%</param>
+      </data>
+    </define>
+  
+    <define name="css_pattern.potentially-negative-length">
+      <data type="token">
+        <param name="pattern">(0|[\-\+]?(\.[0-9]+|[0-9]+\.?([0-9]+)?)(px|em|ex|in|cm|mm|pt|pc))</param>
+      </data>
+    </define>
+
+    <define name="css_pattern.relative-size">
+      <data type="token">
+        <param name="pattern">(larger|smaller)</param>
+      </data>
+    </define>
+  
+    <define name="css_pattern.text-align">
+      <list>
+        <choice>
+          <group>
+            <choice>
+              <value>start</value>
+              <value>end</value>
+              <value>left</value>
+              <value>right</value>
+              <value>center</value>
+            </choice>
+            <optional>
+              <data type="token">
+                <param name="pattern">\S</param>
+              </data>
+            </optional>
+          </group>
+          <choice>
+            <value>justify</value>
+            <value>match-parent</value>
+            <value type="token">start end</value>
+          </choice>
+        </choice>
+      </list>
+    </define>
+
+    <define name="css_pattern.text-align-last">
+      <choice>
+        <ref name="css_pattern.auto"/>
+        <value>start</value>
+        <value>end</value>
+        <value>left</value>
+        <value>right</value>
+        <value>center</value>
+        <value>justify</value>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.text-decoration-line">
+      <choice>
+        <ref name="css_pattern.none"/>
+        <value>underline</value>
+        <value>overline</value>
+        <value>line-through</value>
+      </choice>
+    </define>
+  
+    <define name="css_pattern.text-indent">
+      <list>
+        <choice>
+          <ref name="css_pattern.potentially-negative-length"/>
+          <ref name="css_pattern.percentage"/>
+        </choice>
+        <optional>
+          <ref name="css_pattern.hanging"/>
+        </optional>
+        <optional>
+          <ref name="css_pattern.each-line"/>
+        </optional>
+      </list>
+    </define>
+
+    <define name="css_pattern.text-shadow">
+      <list>
+        <choice>
+          <ref name="css_pattern.potentially-negative-length"/>
+          <ref name="css_pattern.percentage"/>
+        </choice>
+        <choice>
+          <ref name="css_pattern.potentially-negative-length"/>
+          <ref name="css_pattern.percentage"/>
+        </choice>
+        <optional>
+          <choice>
+            <ref name="css_pattern.potentially-negative-length"/>
+            <ref name="css_pattern.percentage"/>
+          </choice>
+        </optional>
+        <optional>
+          <ref name="css_pattern.color"/>
+        </optional>
+      </list>
+    </define>
+
+    <define name="css_pattern.vertical-align">
+      <choice>
+        <value>top</value>
+        <value>bottom</value>
+        <value>middle</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.text-transform">
+      <choice>
+        <value>uppercase</value>
+        <value>lowercase</value>
+        <value>capitalize</value>
+      </choice>
+    </define>
+
+    <define name="css_pattern.width">
+      <choice>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.auto"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+  </div>
+  
+  <div>
+    <a:documentation>css_att.*
+    The individual CSS properties as attributes (each property corresponds to a css:* attribute)
+    </a:documentation>
+
+    <define name="css_att.background-color">
+      <optional>
+        <attribute name="css:background-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-bottom-color">
+      <optional>
+        <attribute name="css:border-bottom-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-bottom-style">
+      <optional>
+        <attribute name="css:border-bottom-style">
+          <ref name="css_pattern.border-style"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-bottom-width">
+      <optional>
+        <attribute name="css:border-bottom-width">
+          <ref name="css_pattern.border-width"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-color">
+      <optional>
+        <attribute name="css:border-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-left-color">
+      <optional>
+        <attribute name="css:border-left-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-left-style">
+      <optional>
+        <attribute name="css:border-left-style">
+          <ref name="css_pattern.border-style"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-left-width">
+      <optional>
+        <attribute name="css:border-left-width">
+          <ref name="css_pattern.border-width"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-right-color">
+      <optional>
+        <attribute name="css:border-right-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-right-style">
+      <optional>
+        <attribute name="css:border-right-style">
+          <ref name="css_pattern.border-style"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-right-width">
+      <optional>
+        <attribute name="css:border-right-width">
+          <ref name="css_pattern.border-width"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-style">
+      <optional>
+        <attribute name="css:border-style">
+          <ref name="css_pattern.border-style"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-width">
+      <optional>
+        <attribute name="css:border-width">
+          <ref name="css_pattern.border-width"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-top-color">
+      <optional>
+        <attribute name="css:border-top-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-top-style">
+      <optional>
+        <attribute name="css:border-top-style">
+          <ref name="css_pattern.border-style"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.border-top-width">
+      <optional>
+        <attribute name="css:border-top-width">
+          <ref name="css_pattern.border-width"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.color">
+      <optional>
+        <attribute name="css:color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.direction">
+      <optional>
+        <attribute name="css:direction">
+          <ref name="css_pattern.direction"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.display">
+      <optional>
+        <attribute name="css:display">
+          <ref name="css_pattern.display"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.font-family">
+      <optional>
+        <attribute name="css:font-family">
+          <ref name="css_pattern.font-family"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.font-size">
+      <optional>
+        <attribute name="css:font-size">
+          <ref name="css_pattern.font-size"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.font-stretch">
+      <optional>
+        <attribute name="css:font-stretch">
+          <ref name="css_pattern.font-stretch"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.font-style">
+      <optional>
+        <attribute name="css:font-style">
+          <ref name="css_pattern.font-style"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.font-variant">
+      <optional>
+        <attribute name="css:font-variant">
+          <ref name="css_pattern.font-variant-css21"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.font-weight">
+      <optional>
+        <attribute name="css:font-weight">
+          <ref name="css_pattern.font-weight"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.hyphens">
+      <optional>
+        <attribute name="css:hyphens">
+          <ref name="css_pattern.hyphens"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.line-height">
+      <optional>
+        <attribute name="css:line-height">
+          <ref name="css_pattern.line-height"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.list-style-type">
+      <optional>
+        <attribute name="css:list-style-type">
+          <ref name="css_pattern.list-style-type"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.margin-bottom">
+      <optional>
+        <attribute name="css:margin-bottom">
+          <ref name="css_pattern.margin"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.margin-left">
+      <optional>
+        <attribute name="css:margin-left">
+          <ref name="css_pattern.margin"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.margin-right">
+      <optional>
+        <attribute name="css:margin-right">
+          <ref name="css_pattern.margin"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.margin-top">
+      <optional>
+        <attribute name="css:margin-top">
+          <ref name="css_pattern.margin"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.min-width">
+      <optional>
+        <attribute name="css:min-width">
+          <ref name="css_pattern.width"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.padding-bottom">
+      <optional>
+        <attribute name="css:padding-bottom">
+          <ref name="css_pattern.padding"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.padding-left">
+      <optional>
+        <attribute name="css:padding-left">
+          <ref name="css_pattern.padding"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.padding-right">
+      <optional>
+        <attribute name="css:padding-right">
+          <ref name="css_pattern.padding"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.padding-top">
+      <optional>
+        <attribute name="css:padding-top">
+          <ref name="css_pattern.padding"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.page-break-after">
+      <optional>
+        <attribute name="css:page-break-after">
+          <ref name="css_pattern.page-break"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.page-break-before">
+      <optional>
+        <attribute name="css:page-break-before">
+          <ref name="css_pattern.page-break"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.page-break-inside">
+      <optional>
+        <attribute name="css:page-break-inside">
+          <ref name="css_pattern.page-break-inside"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.text-align">
+      <optional>
+        <attribute name="css:text-align">
+          <ref name="css_pattern.text-align"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.text-align-last">
+      <optional>
+        <attribute name="css:text-align-last">
+          <ref name="css_pattern.text-align-last"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.text-decoration-line">
+      <optional>
+        <attribute name="css:text-decoration-line">
+          <ref name="css_pattern.text-decoration-line"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.text-indent">
+      <optional>
+        <attribute name="css:text-indent">
+          <ref name="css_pattern.text-indent"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.text-shadow">
+      <optional>
+        <attribute name="css:text-shadow">
+          <ref name="css_pattern.text-shadow"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.text-transform">
+      <optional>
+        <attribute name="css:text-transform">
+          <ref name="css_pattern.text-transform"/>
+        </attribute>
+      </optional>
+    </define>
+  
+    <define name="css_att.vertical-align">
+      <optional>
+        <attribute name="css:vertical-align">
+          <ref name="css_pattern.vertical-align"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.width">
+      <optional>
+        <attribute name="css:width">
+          <ref name="css_pattern.width"/>
+        </attribute>
+      </optional>
+    </define>
+  </div>
+
+  <define name="css_pseudo_att.marker_content">
+    <optional>
+      <attribute name="css:pseudo-marker_content">
+        <ref name="css_pattern.string-literal"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="css_pseudo_att.marker_font-family">
+    <optional>
+      <attribute name="css:pseudo-marker_font-family">
+        <ref name="css_pattern.font-family"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="css_pseudo_att.marker_font-weight">
+    <optional>
+      <attribute name="css:pseudo-marker_font-weight">
+        <ref name="css_pattern.font-weight"/>
+      </attribute>
+    </optional>
+  </define>
+
+  <define name="custom.css-like.attributes">
+    <empty/>
+  </define>
+
+  <define name="css_attributes">
+    <interleave>
+      <ref name="css_att.background-color"/>
+      <ref name="css_att.border-color"/>
+      <ref name="css_att.border-style"/>
+      <ref name="css_att.border-width"/>
+      <ref name="css_att.border-bottom-color"/>
+      <ref name="css_att.border-bottom-style"/>
+      <ref name="css_att.border-bottom-width"/>
+      <ref name="css_att.border-left-color"/>
+      <ref name="css_att.border-left-style"/>
+      <ref name="css_att.border-left-width"/>
+      <ref name="css_att.border-right-color"/>
+      <ref name="css_att.border-right-style"/>
+      <ref name="css_att.border-right-width"/>
+      <ref name="css_att.border-top-color"/>
+      <ref name="css_att.border-top-style"/>
+      <ref name="css_att.border-top-width"/>
+      <ref name="css_att.color"/>
+      <ref name="css_att.direction"/>
+      <ref name="css_att.display"/>
+      <ref name="css_att.font-family"/>
+      <ref name="css_att.font-size"/>
+      <ref name="css_att.font-stretch"/>
+      <ref name="css_att.font-style"/>
+      <ref name="css_att.font-variant"/>
+      <ref name="css_att.font-weight"/>
+      <ref name="css_att.hyphens"/>
+      <ref name="css_att.line-height"/>
+      <ref name="css_att.list-style-type"/>
+      <ref name="css_att.margin-bottom"/>
+      <ref name="css_att.margin-left"/>
+      <ref name="css_att.margin-right"/>
+      <ref name="css_att.margin-top"/>
+      <ref name="css_att.min-width"/>
+      <ref name="css_att.padding-bottom"/>
+      <ref name="css_att.padding-left"/>
+      <ref name="css_att.padding-right"/>
+      <ref name="css_att.padding-top"/>
+      <ref name="css_att.page-break-after"/>
+      <ref name="css_att.page-break-before"/>
+      <ref name="css_att.page-break-inside"/>
+      <ref name="css_att.text-align"/>
+      <ref name="css_att.text-align-last"/>
+      <ref name="css_att.text-decoration-line"/>
+      <ref name="css_att.text-indent"/>
+      <ref name="css_att.text-shadow"/>
+      <ref name="css_att.text-transform"/>
+      <ref name="css_att.vertical-align"/>
+      <ref name="css_att.width"/>
+      <ref name="css_pseudo_att.marker_content"/>
+      <ref name="css_pseudo_att.marker_font-family"/>
+      <ref name="css_pseudo_att.marker_font-weight"/>
+      <ref name="custom.css-like.attributes"/>
+    </interleave>
+  </define>
+</grammar>
