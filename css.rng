@@ -113,19 +113,6 @@
       <empty/>
     </define>
     
-    <define name="css_meta_att.apply-rules">
-      <attribute name="css:apply-rules">
-        <ref name="css_meta_att.apply-rules.model"/>
-      </attribute>
-    </define>
-
-    <define name="css_meta_att.apply-rules.model">
-      <list>
-        <oneOrMore>
-          <data type="token"/>
-        </oneOrMore>
-      </list>
-    </define>
 
     <a:documentation>In the subtree starting at the element with the attribute css:map-attribute="role", the @role
       attribute should be interpreted as a @css:rules attribute. Precedence/merging: In case that there is
