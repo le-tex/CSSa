@@ -22,16 +22,16 @@
   <div>
     <a:documentation>The css:rule element corresponds to named styles in a Word processor or in a DTP application. 
       A mapping mechanism from the host vocabulary’s styled content to CSSa rules is provided by an attribute
-      css:rule-selection-attribute. For example, css:rule-selection-attribute="role" and css:rule-selection-attribute="class" 
-      mean: intepret @role="foo bar" or @class="foo bar", respectively, as @css:rules="foo bar". A CSSa rule is almost like 
-      a rule in the CSS sense.
-      Except that in CSS, a rule consists of a selector and properties. In CSSa, it consists of a name and properties.
-      If the host vocabulary’s class attribute is mapped to the css:rules, class="foo bar" tells a processing application
+      css:rule-selection-attribute that is typically attached to the top-level element. For example, @css:rule-selection-attribute="role"  
+      means: intepret @role="foo bar" on a content element (e.g., a paragraph) as the request to apply the named rules 
+      foo and bar to that element. 
+      In CSS, a rule consists of a selector and properties. In CSSa, it consists of a name and properties.
+      If the host vocabulary’s class attribute is bound to select css:rule(s), class="foo bar" tells a processing application
       to use the named CSSa rules foo and bar, which, as CSS rules, would look like:
       .foo { … }
       .bar { … }
       So a named CSSa rule corresponds to a CSS rule with a selector by class name, and the same properties (in different 
-      syntaxes though).
+      syntaxes though, of course).
     </a:documentation>
   
     <define name="css_element.rules">
@@ -114,11 +114,8 @@
     </define>
     
 
-    <a:documentation>In the subtree starting at the element with the attribute css:map-attribute="role", the @role
-      attribute should be interpreted as a @css:rules attribute. Precedence/merging: In case that there is
-      @css:rule-selection-attribute in scope and there is @css:rules present, the
-      @css:rule-selection-attribute mapping declaration must be ignored for that element (not for its
-      descendants though, subject to this rule).</a:documentation>
+    <a:documentation>In the subtree starting at the element with the attribute css:rule-selection-attribute="role", the @role
+      attribute should be interpreted as applying the css:rule elements with the corresponding name to this element.</a:documentation>
     <define name="css_meta_att.rule-map">
       <attribute name="css:rule-selection-attribute">
         <data type="QName" />
