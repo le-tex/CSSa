@@ -1058,6 +1058,11 @@
     </define>
     
     <define name="css_att.text-decoration-width">
+      <a:documentation>proposed here:
+          http://lists.w3.org/Archives/Public/www-style/2012Jul/0445.html 
+          but not yet in
+          http://dev.w3.org/csswg/css-text-decor-3/ as at 2013-02-08 
+      </a:documentation>
       <optional>
         <attribute name="css:text-decoration-width">
           <ref name="css_pattern.text-decoration-width"/>
