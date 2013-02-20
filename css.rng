@@ -627,6 +627,16 @@
       </choice>
     </define>
   
+    <define name="css_pattern.text-decoration-width">
+      <choice>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.auto"/>
+        <value>thin</value>
+        <value>medium</value>
+        <value>thick</value>
+      </choice>
+    </define>
+    
     <define name="css_pattern.text-indent">
       <list>
         <choice>
@@ -1031,6 +1041,14 @@
       </optional>
     </define>
   
+    <define name="css_att.text-decoration-color">
+      <optional>
+        <attribute name="css:text-decoration-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+
     <define name="css_att.text-decoration-line">
       <optional>
         <attribute name="css:text-decoration-line">
@@ -1038,7 +1056,15 @@
         </attribute>
       </optional>
     </define>
-  
+    
+    <define name="css_att.text-decoration-width">
+      <optional>
+        <attribute name="css:text-decoration-width">
+          <ref name="css_pattern.text-decoration-width"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.text-indent">
       <optional>
         <attribute name="css:text-indent">
@@ -1152,7 +1178,9 @@
       <ref name="css_att.page-break-inside"/>
       <ref name="css_att.text-align"/>
       <ref name="css_att.text-align-last"/>
+      <ref name="css_att.text-decoration-color"/>
       <ref name="css_att.text-decoration-line"/>
+      <ref name="css_att.text-decoration-width"/>
       <ref name="css_att.text-indent"/>
       <ref name="css_att.text-shadow"/>
       <ref name="css_att.text-transform"/>
