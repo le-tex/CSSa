@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<grammar
+  xmlns="http://relaxng.org/ns/structure/1.0"
+  xmlns:db="http://docbook.org/ns/docbook"
+  xmlns:css="http://www.w3.org/1996/css"
+  xmlns:s="http://purl.oclc.org/dsdl/schematron"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+  ns="http://docbook.org/ns/docbook"
+  >
+
+  <html:h1>CSSa rules</html:h1>
+
+  <html:p>For storing and annotating paragraph, character, etc. styles found in office or DTP documents within the CSSa
+    vocabulary, with some extensions (e.g., tab declarations).</html:p>
+
+  <include href="cssa-publisher-extensions.rng">
+
+    <define name="custom.css_element_model">
+      <interleave>
+        <optional>
+          <ref name="hub.tabs.declaration.element"/>
+        </optional>
+        <optional>
+          <ref name="hub.style-link.element"/>
+        </optional>
+      </interleave>
+    </define>
+
+    <define name="custom.css-like.rule.attributes">
+      <ref name="hub.att.numbering-starts-at"/>
+      <ref name="hub.att.numbering-level"/>
+      <ref name="hub.att.numbering-continue"/>
+      <optional>
+        <ref name="cssa-doc.comment"/>
+      </optional>
+      <optional>
+        <ref name="cssa-doc.status"/>
+      </optional>
+      <optional>
+        <ref name="db.remap.attribute"/>
+      </optional>
+    </define>
+  </include>
+
+  <start combine="choice">
+    <ref name="css_element.rules"/>
+  </start>
+
+  <define name="cssa-doc.comment">
+    <optional>
+      <attribute name="comment"/>
+    </optional>
+  </define>
+
+  <define name="cssa-doc.status">
+    <a:documentation>Whether the style or its name is disputed or deprecated</a:documentation>
+    <optional>
+      <attribute name="status">
+        <choice>
+          <value>deprecated</value>
+          <value>discuss</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="db.remap.attribute">
+    <attribute name="remap">
+      <a:documentation>Provides the name or similar semantic identifier assigned to the content in some previous markup scheme</a:documentation>
+    </attribute>
+  </define>
+</grammar>
