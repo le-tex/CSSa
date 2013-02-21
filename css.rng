@@ -639,7 +639,7 @@
 
     <define name="css_pattern.text-decoration-offset">
       <choice>
-        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.potentially-negative-length"/>
         <ref name="css_pattern.auto"/>
       </choice>
     </define>
