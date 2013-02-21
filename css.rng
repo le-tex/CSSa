@@ -636,6 +636,13 @@
         <value>thick</value>
       </choice>
     </define>
+
+    <define name="css_pattern.text-decoration-offset">
+      <choice>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.auto"/>
+      </choice>
+    </define>
     
     <define name="css_pattern.text-indent">
       <list>
@@ -672,6 +679,25 @@
           <ref name="css_pattern.color"/>
         </optional>
       </list>
+    </define>
+
+    <define name="css_pattern.text-underline-position">
+      <a:documentation>http://dev.w3.org/csswg/css-text-decor-3/#text-underline-position-property</a:documentation>
+      <choice>
+        <ref name="css_pattern.auto"/>
+        <value>alphabetic</value>
+        <list>
+          <optional>
+            <value>under</value>
+          </optional>
+          <optional>
+            <choice>
+              <value>left</value>
+              <value>right</value>
+            </choice>
+          </optional>
+        </list>
+      </choice>
     </define>
 
     <define name="css_pattern.vertical-align">
@@ -1057,6 +1083,19 @@
       </optional>
     </define>
     
+    <define name="css_att.text-decoration-offset">
+      <a:documentation>proposed here:
+        http://lists.w3.org/Archives/Public/www-style/2012Jul/0445.html 
+        but not yet in
+        http://dev.w3.org/csswg/css-text-decor-3/ as at 2013-02-08 
+      </a:documentation>
+      <optional>
+        <attribute name="css:text-decoration-offset">
+          <ref name="css_pattern.text-decoration-offset"/>
+        </attribute>
+      </optional>
+    </define>
+
     <define name="css_att.text-decoration-width">
       <a:documentation>proposed here:
           http://lists.w3.org/Archives/Public/www-style/2012Jul/0445.html 
@@ -1094,6 +1133,14 @@
       </optional>
     </define>
   
+    <define name="css_att.text-underline-position">
+      <optional>
+        <attribute name="css:text-underline-position">
+          <ref name="css_pattern.text-underline-position"/>
+        </attribute>
+      </optional>
+    </define>
+
     <define name="css_att.vertical-align">
       <optional>
         <attribute name="css:vertical-align">
@@ -1185,10 +1232,12 @@
       <ref name="css_att.text-align-last"/>
       <ref name="css_att.text-decoration-color"/>
       <ref name="css_att.text-decoration-line"/>
+      <ref name="css_att.text-decoration-offset"/>
       <ref name="css_att.text-decoration-width"/>
       <ref name="css_att.text-indent"/>
       <ref name="css_att.text-shadow"/>
       <ref name="css_att.text-transform"/>
+      <ref name="css_att.text-underline-position"/>
       <ref name="css_att.vertical-align"/>
       <ref name="css_att.width"/>
       <ref name="css_pseudo_att.marker_content"/>
