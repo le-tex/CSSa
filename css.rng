@@ -1176,6 +1176,14 @@
       </optional>
     </define>
   
+    <define name="css_att.opacity">
+      <optional>
+        <attribute name="css:opacity">
+          <ref name="css_pattern.opacity"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.outline-color">
       <optional>
         <attribute name="css:outline-color">
@@ -1426,6 +1434,7 @@
       <ref name="css_att.margin-right"/>
       <ref name="css_att.margin-top"/>
       <ref name="css_att.min-width"/>
+      <ref name="css_att.opacity"/>
       <ref name="css_att.outline-color"/>
       <ref name="css_att.outline-style"/>
       <ref name="css_att.outline-width"/>
