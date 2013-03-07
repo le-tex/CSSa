@@ -149,14 +149,7 @@
       <choice>
         <ref name="css_pattern.none"/>
         <value>hidden</value>
-        <value>dotted</value>
-        <value>dashed</value>
-        <value>solid</value>
-        <value>double</value>
-        <value>groove</value>
-        <value>ridge</value>
-        <value>inset</value>
-        <value>outset</value>
+        <ref name="css_pattern.line-style"/>
       </choice>
     </define>
   
@@ -166,6 +159,7 @@
         <value>thin</value>
         <value>medium</value>
         <value>thick</value>
+        <ref name="css_pattern.inherit"/>
       </choice>
     </define>
   
@@ -222,8 +216,8 @@
         <value>table-column</value>
         <value>table-cell</value>
         <value>table-caption</value>
-        <value>none</value>
-        <value>inherit</value>
+        <ref name="css_pattern.none"/>
+        <ref name="css_pattern.inherit"/>
       </choice>
     </define>
 
@@ -315,6 +309,19 @@
       </choice>
     </define>
 
+    <define name="css_pattern.line-style">
+      <choice>
+        <value>dotted</value>
+        <value>dashed</value>
+        <value>solid</value>
+        <value>double</value>
+        <value>groove</value>
+        <value>ridge</value>
+        <value>inset</value>
+        <value>outset</value>
+      </choice>
+    </define>
+
     <define name="css_pattern.page-break-inside">
       <choice>
         <ref name="css_pattern.auto"/>
@@ -331,6 +338,13 @@
       </choice>
     </define>
 
+    <define name="css_pattern.outline-style">
+      <choice>
+        <ref name="css_pattern.none"/>
+        <ref name="css_pattern.line-style"/>
+      </choice>
+    </define>
+    
     <define name="css_pattern.string-literal">
       <a:documentation>A quoted string</a:documentation>
       <choice>
@@ -995,6 +1009,30 @@
       </optional>
     </define>
   
+    <define name="css_att.outline-color">
+      <optional>
+        <attribute name="css:outline-color">
+          <ref name="css_pattern.color"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.outline-style">
+      <optional>
+        <attribute name="css:outline-style">
+          <ref name="css_pattern.outline-style"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.outline-width">
+      <optional>
+        <attribute name="css:outline-width">
+          <ref name="css_pattern.border-width"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.padding-bottom">
       <optional>
         <attribute name="css:padding-bottom">
@@ -1221,6 +1259,9 @@
       <ref name="css_att.margin-right"/>
       <ref name="css_att.margin-top"/>
       <ref name="css_att.min-width"/>
+      <ref name="css_att.outline-color"/>
+      <ref name="css_att.outline-style"/>
+      <ref name="css_att.outline-width"/>
       <ref name="css_att.padding-bottom"/>
       <ref name="css_att.padding-left"/>
       <ref name="css_att.padding-right"/>
