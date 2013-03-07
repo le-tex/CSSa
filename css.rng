@@ -313,6 +313,7 @@
           <value>yellow</value>
           <value>yellowgreen</value>
         </choice>
+        <value>transparent</value>
         <data type="token">
           <param name="pattern">#[0-9a-fA-F]{3}</param>
         </data>
@@ -486,25 +487,6 @@
         <value>always</value>
         <value>left</value>
         <value>right</value>
-      </choice>
-    </define>
-
-    <define name="css_pattern.outline-style">
-      <choice>
-        <ref name="css_pattern.none"/>
-        <ref name="css_pattern.line-style"/>
-      </choice>
-    </define>
-    
-    <define name="css_pattern.string-literal">
-      <a:documentation>A quoted string</a:documentation>
-      <choice>
-        <data type="token">
-          <param name="pattern">'.*'</param>
-        </data>
-        <data type="token">
-          <param name="pattern">".*"</param>
-        </data>
       </choice>
     </define>
 
@@ -720,6 +702,21 @@
       </data>
     </define>
   
+    <define name="css_pattern.opacity">
+      <choice>
+        <ref name="css_pattern.zero-to-one"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.outline-style">
+      <choice>
+        <ref name="css_pattern.line-style"/>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.none"/>
+      </choice>
+    </define>
+    
     <define name="css_pattern.padding">
       <choice>
         <ref name="css_pattern.length"/>
@@ -745,6 +742,18 @@
       </data>
     </define>
   
+    <define name="css_pattern.string-literal">
+      <a:documentation>A quoted string</a:documentation>
+      <choice>
+        <data type="token">
+          <param name="pattern">'.*'</param>
+        </data>
+        <data type="token">
+          <param name="pattern">".*"</param>
+        </data>
+      </choice>
+    </define>
+      
     <define name="css_pattern.text-align">
       <list>
         <choice>
@@ -889,6 +898,13 @@
         <ref name="css_pattern.inherit"/>
       </choice>
     </define>
+    
+    <define name="css_pattern.zero-to-one">
+      <data type="token">
+        <param name="pattern">(0|0?\.\d+|1(.0*)?)</param>
+      </data>
+    </define>
+    
   </div>
   
   <div>
