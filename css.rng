@@ -36,10 +36,15 @@
   
     <define name="css_element.rules">
       <element name="css:rules">
+        <ref name="css_rules_atts"/>
         <zeroOrMore>
           <ref name="css_element.rule"/>
         </zeroOrMore>
       </element>
+    </define>
+
+    <define name="css_rules_atts">
+      <empty/>
     </define>
 
     <define name="css_element.rule">

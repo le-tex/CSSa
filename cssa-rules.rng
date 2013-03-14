@@ -55,6 +55,10 @@
     </optional>
   </define>
 
+  <define name="css_rules_atts" combine="interleave">
+    <ref name="cssa-doc.comment"/>
+  </define>
+
   <define name="cssa-doc.status">
     <a:documentation>Whether the style or its name is disputed or deprecated</a:documentation>
     <optional>
