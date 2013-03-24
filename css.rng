@@ -68,10 +68,15 @@
     </define>
 
     <define name="selector_group">
-      <a:documentation>This is currently a very sketchy concept of also storing CSS and XPath selectors and calculated
-        priority numbers for the selectors. The idea behind this is that Grit’s CSS parser
-        (https://subversion.le-tex.de/common/css-expand/) might eventually switch over to validatable CSSa for its internal
-        XML representation of a document’s CSS.</a:documentation>
+      <a:documentation>This is a sketchy concept of also storing CSS and XPath selectors and calculated priority numbers for the
+        selectors. The idea behind this is that Grit’s CSS parser (https://subversion.le-tex.de/common/css-expand/) might
+        eventually switch over to validatable CSSa for its internal XML representation of a document’s CSS. 
+        Another use case:
+        when a certain element, let’s say, p without a class attribute, always has the same default style, it should be
+        possible, in the style’s css:rule, that this is the default rule for that element. This could be expressed by an XPath
+        matching pattern or an XPath expression, but I think that you’d prefer a more lightweight alternative for easy cases.
+        So, alternatively to @xpath, I’ll introduce an attribute @elements where you can put in a space-separated list of
+        QNames. </a:documentation>
       <attribute name="name">
         <a:documentation>A subset of the spec at http://www.w3.org/TR/CSS21/syndata.html#characters
         (what’s missing here: chars U+00A0 and above; quoted chars)</a:documentation>
@@ -83,12 +88,24 @@
         <attribute name="native-name"/>
       </optional>
       <optional>
-        <group>
-          <attribute name="xpath"/>
-          <optional>
-            <attribute name="xslt-priority"/>
-          </optional>
-        </group>
+        <choice>
+          <group>
+            <attribute name="xpath"/>
+            <optional>
+              <attribute name="xslt-priority"/>
+            </optional>
+          </group>
+          <attribute name="elements">
+            <a:documentation>List of host vocabulary element names that this rule should be associated with – if there is
+              no rule association attribute on that element. A rule association attribute is an attribute whose name is in
+              the list of values of the css:rule-selection-attribute that may be attached to an element (such as the document’s
+              top-level element), for example, class for HTML or role for DocBook.
+            </a:documentation>
+            <list>
+              <data type="QName"/>
+            </list>
+          </attribute>
+        </choice>
       </optional>
       <optional>
         <group>
@@ -120,10 +137,15 @@
     
 
     <a:documentation>In the subtree starting at the element with the attribute css:rule-selection-attribute="role", the @role
-      attribute should be interpreted as applying the css:rule elements with the corresponding name to this element.</a:documentation>
+      attribute should be interpreted as applying the css:rule elements with the corresponding name to this element.
+      There may be multiple attribute names (separated by spaces) which tells a processing application that the value of each 
+      of these attributes may be used to look up css:rules by their name attribute. For compatibility reasons, this attribute,
+      css:rule-selection-attribute, has the singular form as its name.</a:documentation>
     <define name="css_meta_att.rule-map">
       <attribute name="css:rule-selection-attribute">
-        <data type="QName" />
+        <list>
+          <data type="QName" />
+        </list>
       </attribute>
     </define>
 
