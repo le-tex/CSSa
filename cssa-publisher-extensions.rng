@@ -14,7 +14,8 @@
   <html:h1>CSSa publisher extensions</html:h1>
 
   <html:p>Common extras (such as tab declarations) used in <html:a href="cssa-rules.rng">cssa-rules.rng</html:a> and in <html:a
-    href="https://github.com/gimsieke/Hub">Hub XML</html:a></html:p>
+    href="https://github.com/gimsieke/Hub">Hub XML</html:a>. Because Hub is in the DocBook namespace, the tab declarations are
+    in that namespace, too.</html:p>
 
 
   <start combine="choice">
@@ -112,9 +113,10 @@
   </define>
 
   <define name="hub.tab.declaration.horizontal-position.att">
+    <a:documentation>To my surprise, negative lengths are possible, too. At least in InDesign.</a:documentation>
     <optional>
       <attribute name="horizontal-position">
-        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.potentially-negative-length"/>
       </attribute>
     </optional>
   </define>
