@@ -63,7 +63,24 @@
           <ref name="css_attributes"/>
         </interleave>
         <!-- For tab declarations; empty by default: --> 
-        <ref name="custom.css_element_model"/>
+        <interleave>
+          <optional>
+            <ref name="css_element.attic"/>
+          </optional>
+          <ref name="custom.css_element_model"/>  
+        </interleave>
+      </element>
+    </define>
+
+    <define name="css_element.attic">
+      <element name="css:attic">
+        <a:documentation>An element to hold css attributes that have become obsolete in a
+          style definition (for example, because css:font-style has been transformed to an
+          italic element), lest they be forgotten.</a:documentation>
+        <interleave>
+          <ref name="custom.css-like.rule.attributes"/>
+          <ref name="css_attributes"/>
+        </interleave>        
       </element>
     </define>
 
