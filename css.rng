@@ -119,7 +119,7 @@
               top-level element), for example, class for HTML or role for DocBook.
             </a:documentation>
             <list>
-              <data type="QName"/>
+              <oneOrMore><data type="QName"/></oneOrMore>
             </list>
           </attribute>
         </choice>
@@ -161,7 +161,7 @@
     <define name="css_meta_att.rule-map">
       <attribute name="css:rule-selection-attribute">
         <list>
-          <data type="QName" />
+          <oneOrMore><data type="QName" /></oneOrMore>
         </list>
       </attribute>
     </define>
