@@ -936,7 +936,7 @@
 
     <define name="css_pattern.transform">
       <a:documentation>http://www.w3.org/TR/css3-transforms/
-      Partial implementation
+      Partial implementation (only rotate for the time being)
       </a:documentation>
       <choice>
         <value>none</value>
