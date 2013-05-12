@@ -934,6 +934,39 @@
       </choice>
     </define>
 
+    <define name="css_pattern.transform">
+      <a:documentation>http://www.w3.org/TR/css3-transforms/
+      Partial implementation
+      </a:documentation>
+      <choice>
+        <value>none</value>
+        <list>
+          <oneOrMore>
+            <ref name="css_pattern.transform-function"/>
+          </oneOrMore>  
+        </list>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.transform-function">
+      <choice>
+        <ref name="css_pattern.2d-transform-function"/>
+        <ref name="css_pattern.3d-transform-function"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.2d-transform-function">
+      <choice>
+        <data type="token">
+          <param name="pattern">rotate\s*\(\s*(0|[\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?(deg|grad|rad|turn))\s*\)</param>
+        </data>
+      </choice>
+    </define>
+
+    <define name="css_pattern.3d-transform-function">
+      <empty/>
+    </define>
+
     <define name="css_pattern.width">
       <choice>
         <ref name="css_pattern.length"/>
