@@ -81,14 +81,6 @@
       <ref name="hub.tab.declaration.alignment-char.att"/>
       <ref name="hub.tab.declaration.leader.att"/>
       <ref name="hub.tab.declaration.horizontal-position.att"/>
-      <optional>
-        <attribute name="xml:space">
-          <choice>
-            <value>default</value>
-            <value>preserve</value>
-          </choice>
-        </attribute>
-      </optional>
     </interleave>
   </define>
 
