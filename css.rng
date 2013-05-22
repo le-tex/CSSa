@@ -934,6 +934,7 @@
         <value>uppercase</value>
         <value>lowercase</value>
         <value>capitalize</value>
+        <ref name="css_pattern.none"/>
       </choice>
     </define>
 
