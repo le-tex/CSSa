@@ -1209,6 +1209,14 @@
       </optional>
     </define>
     
+    <define name="css_att.height">
+      <optional>
+        <attribute name="css:height">
+          <ref name="css_pattern.width"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.hyphens">
       <optional>
         <attribute name="css:hyphens">
@@ -1556,6 +1564,7 @@
       <ref name="css_att.font-style"/>
       <ref name="css_att.font-variant"/>
       <ref name="css_att.font-weight"/>
+      <ref name="css_att.height"/>
       <ref name="css_att.hyphens"/>
       <ref name="css_att.left"/>
       <ref name="css_att.line-height"/>
