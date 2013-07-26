@@ -29,7 +29,7 @@
       </interleave>
     </define>
 
-    <define name="custom.css-like.rule.attributes">
+    <define name="custom.css-like.rule.attributes" combine="interleave">
       <ref name="hub.att.numbering-starts-at"/>
       <ref name="hub.att.numbering-level"/>
       <ref name="hub.att.numbering-continue"/>
