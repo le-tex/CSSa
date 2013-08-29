@@ -1508,6 +1508,14 @@
       </optional>
     </define>
     
+    <define name="css_att.transform">
+      <optional>
+        <attribute name="css:transform">
+          <ref name="css_pattern.transform"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.vertical-align">
       <optional>
         <attribute name="css:vertical-align">
@@ -1615,6 +1623,7 @@
       <ref name="css_att.text-transform"/>
       <ref name="css_att.text-underline-position"/>
       <ref name="css_att.top"/>
+      <ref name="css_att.transform"/>
       <ref name="css_att.vertical-align"/>
       <ref name="css_att.width"/>
       <ref name="css_pseudo_att.marker_content"/>
