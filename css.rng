@@ -746,7 +746,13 @@
         <param name="pattern">(\.[0-9]+|[0-9]+\.?([0-9]+)?)</param>
       </data>
     </define>
-  
+
+    <define name="css_pattern.number">
+      <data type="token">
+        <param name="pattern">[\-+]?(\.[0-9]+|[0-9]+\.?([0-9]+)?)</param>
+      </data>
+    </define>
+
     <define name="css_pattern.opacity">
       <choice>
         <ref name="css_pattern.zero-to-one"/>
@@ -959,10 +965,21 @@
       </choice>
     </define>
 
+    <!-- Considerin using individual properties for scaleX etc. This would facilitate Schematron checks, grouping, etc.
+         But it would break simple serializability to CSS. -->
     <define name="css_pattern.2d-transform-function">
       <choice>
         <data type="token">
           <param name="pattern">rotate\s*\(\s*(0|[\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?(deg|grad|rad|turn))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">scaleX\s*\(\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">scaleY\s*\(\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">scale\s*\(\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?)(\s*,\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?))?\s*\)</param>
         </data>
       </choice>
     </define>
