@@ -996,6 +996,13 @@
       </choice>
     </define>
     
+    <define name="css_pattern.widows">
+      <choice>
+        <data type="nonNegativeInteger"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+
     <define name="css_pattern.width">
       <choice>
         <ref name="css_pattern.length"/>
@@ -1314,6 +1321,14 @@
       </optional>
     </define>
     
+    <define name="css_att.orphans">
+      <optional>
+        <attribute name="css:orphans">
+          <ref name="css_pattern.widows"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.outline-color">
       <optional>
         <attribute name="css:outline-color">
@@ -1524,6 +1539,14 @@
       </optional>
     </define>
 
+    <define name="css_att.widows">
+      <optional>
+        <attribute name="css:widows">
+          <ref name="css_pattern.widows"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.width">
       <optional>
         <attribute name="css:width">
@@ -1603,6 +1626,7 @@
       <ref name="css_att.outline-color"/>
       <ref name="css_att.outline-style"/>
       <ref name="css_att.outline-width"/>
+      <ref name="css_att.orphans"/>
       <ref name="css_att.padding-bottom"/>
       <ref name="css_att.padding-left"/>
       <ref name="css_att.padding-right"/>
@@ -1625,6 +1649,7 @@
       <ref name="css_att.top"/>
       <ref name="css_att.transform"/>
       <ref name="css_att.vertical-align"/>
+      <ref name="css_att.widows"/>
       <ref name="css_att.width"/>
       <ref name="css_pseudo_att.marker_content"/>
       <ref name="css_pseudo_att.marker_font-family"/>
