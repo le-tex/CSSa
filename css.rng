@@ -207,6 +207,31 @@
       </choice>
     </define>
   
+    <define name="css_pattern.break-inside">
+      <choice>
+        <value>avoid</value>
+        <value>avoid-page</value>
+        <value>avoid-column</value>
+        <value>avoid-region</value>
+        <ref name="css_pattern.auto"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.break-before">
+      <choice>
+        <value>avoid</value>
+        <value>always</value>
+        <value>left</value>
+        <value>right</value>
+        <value>recto</value>
+        <value>verso</value>
+        <value>page</value>
+        <value>column</value>
+        <value>region</value>
+        <ref name="css_pattern.break-inside"/>
+      </choice>
+    </define>
+    
     <define name="css_pattern.color">
       <a:documentation>http://www.w3.org/TR/css3-color/</a:documentation>
       <choice>
@@ -1161,6 +1186,30 @@
       </optional>
     </define>
     
+    <define name="css_att.break-after">
+      <optional>
+        <attribute name="css:break-after">
+          <ref name="css_pattern.break-before"/>
+        </attribute>
+      </optional>
+    </define>
+
+    <define name="css_att.break-before">
+      <optional>
+        <attribute name="css:break-before">
+          <ref name="css_pattern.break-before"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.break-inside">
+      <optional>
+        <attribute name="css:break-inside">
+          <ref name="css_pattern.break-inside"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.color">
       <optional>
         <attribute name="css:color">
@@ -1603,6 +1652,9 @@
       <ref name="css_att.border-top-style"/>
       <ref name="css_att.border-top-width"/>
       <ref name="css_att.bottom"/>
+      <ref name="css_att.break-after"/>
+      <ref name="css_att.break-before"/>
+      <ref name="css_att.break-inside"/>
       <ref name="css_att.color"/>
       <ref name="css_att.direction"/>
       <ref name="css_att.display"/>
