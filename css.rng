@@ -1354,6 +1354,14 @@
       </optional>
     </define>
 
+    <define name="css_att.min-height">
+      <optional>
+        <attribute name="css:min-height">
+          <ref name="css_pattern.width"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.min-width">
       <optional>
         <attribute name="css:min-width">
@@ -1673,6 +1681,7 @@
       <ref name="css_att.margin-left"/>
       <ref name="css_att.margin-right"/>
       <ref name="css_att.margin-top"/>
+      <ref name="css_att.min-height"/>
       <ref name="css_att.min-width"/>
       <ref name="css_att.opacity"/>
       <ref name="css_att.outline-color"/>
