@@ -85,7 +85,7 @@
       <element name="css:page">
         <interleave>
           <optional>
-            <ref name="name"/>
+            <ref name="css_internal_att.name"/>
           </optional>
           <ref name="page_pseudo_selectors"/>
           <ref name="custom.css-like.rule.attributes"/>
@@ -153,8 +153,8 @@
       </element>
     </define>
 
-    <define name="name">
-      <attribute name="name">
+    <define name="css_internal_att.name">
+      <attribute name="css_internal_att.name">
         <a:documentation>A subset of the spec at http://www.w3.org/TR/CSS21/syndata.html#characters
           (what’s missing here: chars U+00A0 and above; quoted chars)</a:documentation>
         <data type="token">
@@ -173,7 +173,7 @@
         matching pattern or an XPath expression, but I think that you’d prefer a more lightweight alternative for easy cases.
         So, alternatively to @xpath, I’ll introduce an attribute @elements where you can put in a space-separated list of
         QNames. </a:documentation>
-      <ref name="name"/>
+      <ref name="css_internal_att.name"/>
       <optional>
         <attribute name="native-name"/>
       </optional>
