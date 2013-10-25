@@ -154,7 +154,7 @@
     </define>
 
     <define name="css_internal_att.name">
-      <attribute name="css_internal_att.name">
+      <attribute name="name">
         <a:documentation>A subset of the spec at http://www.w3.org/TR/CSS21/syndata.html#characters
           (what’s missing here: chars U+00A0 and above; quoted chars)</a:documentation>
         <data type="token">
