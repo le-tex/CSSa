@@ -305,6 +305,16 @@
       </choice>
     </define>
     
+    <define name="css_pattern.clear">
+      <choice>
+        <value>both</value>
+        <value>left</value>
+        <value>right</value>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.none"/>
+      </choice>
+    </define>
+    
     <define name="css_pattern.color">
       <a:documentation>http://www.w3.org/TR/css3-color/</a:documentation>
       <choice>
@@ -589,7 +599,7 @@
   
     <define name="css_pattern.length">
       <data type="token">
-        <param name="pattern">\+?(\.[0-9]+|[0-9]+\.?([0-9]+)?)(px|em|ex|in|cm|mm|pt|pc)</param>
+        <param name="pattern">(0|\+?(\.[0-9]+|[0-9]+\.?([0-9]+)?)(px|em|ex|in|cm|mm|pt|pc))</param>
       </data>
     </define>
   
@@ -1283,6 +1293,14 @@
       </optional>
     </define>
     
+    <define name="css_att.clear">
+      <optional>
+        <attribute name="css:clear">
+          <ref name="css_pattern.clear"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.color">
       <optional>
         <attribute name="css:color">
@@ -1758,6 +1776,7 @@
       <ref name="css_att.break-after"/>
       <ref name="css_att.break-before"/>
       <ref name="css_att.break-inside"/>
+      <ref name="css_att.clear"/>
       <ref name="css_att.color"/>
       <ref name="css_att.content"/>
       <ref name="css_att.direction"/>
