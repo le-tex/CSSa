@@ -262,6 +262,13 @@
       </choice>
     </define>
   
+    <define name="css_pattern.border-collapse">
+      <choice>
+        <value>separate</value>
+        <value>collapse</value>
+      </choice>
+    </define>
+
     <define name="css_pattern.border-style">
       <choice>
         <ref name="css_pattern.none"/>
@@ -1165,6 +1172,14 @@
       </optional>
     </define>
 
+    <define name="css_att.border-collapse">
+      <optional>
+        <attribute name="css:border-collapse">
+          <ref name="css_pattern.border-collapse"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.border-color">
       <optional>
         <attribute name="css:border-color">
@@ -1757,6 +1772,7 @@
   <define name="css_attributes">
     <interleave>
       <ref name="css_att.background-color"/>
+      <ref name="css_att.border-collapse"/>
       <ref name="css_att.border-color"/>
       <ref name="css_att.border-style"/>
       <ref name="css_att.border-width"/>
