@@ -631,17 +631,23 @@
 
     <define name="css_pattern.line-style">
       <choice>
-        <value>dotted</value>
-        <value>dashed</value>
-        <value>solid</value>
-        <value>double</value>
         <value>groove</value>
         <value>ridge</value>
         <value>inset</value>
         <value>outset</value>
+        <ref name="css_pattern.simple-line-style"/>
       </choice>
     </define>
 
+    <define name="css_pattern.simple-line-style">
+      <choice>
+        <value>dotted</value>
+        <value>dashed</value>
+        <value>solid</value>
+        <value>double</value>
+      </choice>
+    </define>
+    
     <define name="css_pattern.page-break-inside">
       <choice>
         <ref name="css_pattern.auto"/>
@@ -990,6 +996,13 @@
         <value>underline</value>
         <value>overline</value>
         <value>line-through</value>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.text-decoration-style">
+      <choice>
+        <ref name="css_pattern.simple-line-style"/>
+        <value>wavy</value>
       </choice>
     </define>
   
@@ -1682,6 +1695,14 @@
       </optional>
     </define>
     
+    <define name="css_att.text-decoration-style">
+      <optional>
+        <attribute name="css:text-decoration-style">
+          <ref name="css_pattern.text-decoration-style"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.text-decoration-offset">
       <a:documentation>proposed here:
         http://lists.w3.org/Archives/Public/www-style/2012Jul/0445.html 
@@ -1877,6 +1898,7 @@
       <ref name="css_att.text-decoration-color"/>
       <ref name="css_att.text-decoration-line"/>
       <ref name="css_att.text-decoration-offset"/>
+      <ref name="css_att.text-decoration-style"/>
       <ref name="css_att.text-decoration-width"/>
       <ref name="css_att.text-indent"/>
       <ref name="css_att.text-shadow"/>
