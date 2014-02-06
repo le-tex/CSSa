@@ -536,6 +536,15 @@
       <value>each-line</value>
     </define>
   
+    <define name="css_pattern.float">
+      <choice>
+        <value>left</value>
+        <value>right</value>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.none"/>
+      </choice>
+    </define>
+  
     <define name="css_pattern.font-family">
       <a:documentation>Room for improvement, but a regex pattern is complicated: http://www.w3.org/TR/css3-fonts/#font-family-prop</a:documentation>
       <data type="string"/>
@@ -845,6 +854,13 @@
         <ref name="css_pattern.percentage"/>
         <ref name="css_pattern.auto"/>
         <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.max-width">
+      <choice>
+        <ref name="css_pattern.width"/>
+        <ref name="css_pattern.none"/>
       </choice>
     </define>
 
@@ -1348,6 +1364,14 @@
         </attribute>
       </optional>
     </define>
+
+    <define name="css_att.float">
+      <optional>
+        <attribute name="css:float">
+          <ref name="css_pattern.float"/>
+        </attribute>
+      </optional>
+    </define>
   
     <define name="css_att.font-family">
       <optional>
@@ -1465,6 +1489,22 @@
       <optional>
         <attribute name="css:margin-top">
           <ref name="css_pattern.margin"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.max-height">
+      <optional>
+        <attribute name="css:max-height">
+          <ref name="css_pattern.max-width"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.max-width">
+      <optional>
+        <attribute name="css:max-width">
+          <ref name="css_pattern.max-width"/>
         </attribute>
       </optional>
     </define>
@@ -1797,6 +1837,7 @@
       <ref name="css_att.content"/>
       <ref name="css_att.direction"/>
       <ref name="css_att.display"/>
+      <ref name="css_att.float"/>
       <ref name="css_att.font-family"/>
       <ref name="css_att.font-size"/>
       <ref name="css_att.font-stretch"/>
@@ -1812,6 +1853,8 @@
       <ref name="css_att.margin-left"/>
       <ref name="css_att.margin-right"/>
       <ref name="css_att.margin-top"/>
+      <ref name="css_att.max-height"/>
+      <ref name="css_att.max-width"/>
       <ref name="css_att.min-height"/>
       <ref name="css_att.min-width"/>
       <ref name="css_att.opacity"/>
