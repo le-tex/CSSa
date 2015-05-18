@@ -55,6 +55,9 @@
         <interleave>
           <ref name="selector_group"/>
           <optional>
+            <attribute name="regex"/>
+          </optional>
+          <optional> 
             <attribute name="layout-type">
               <ref name="css_rule_att.layout-type.model"/>
             </attribute>
@@ -287,6 +290,15 @@
       </choice>
     </define>
   
+    <define name="css_pattern.border-radius">
+      <choice>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+    
+    
     <define name="css_pattern.break-inside">
       <choice>
         <value>avoid</value>
@@ -1185,6 +1197,22 @@
       </optional>
     </define>
 
+    <define name="css_att.border-bottom-left-radius">
+      <optional>
+        <attribute name="css:border-bottom-left-radius">
+          <ref name="css_pattern.border-radius"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.border-bottom-right-radius">
+      <optional>
+        <attribute name="css:border-bottom-right-radius">
+          <ref name="css_pattern.border-radius"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.border-bottom-style">
       <optional>
         <attribute name="css:border-bottom-style">
@@ -1289,6 +1317,22 @@
       </optional>
     </define>
 
+    <define name="css_att.border-top-left-radius">
+      <optional>
+        <attribute name="css:border-top-left-radius">
+          <ref name="css_pattern.border-radius"/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.border-top-right-radius">
+      <optional>
+        <attribute name="css:border-top-right-radius">
+          <ref name="css_pattern.border-radius"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.border-top-style">
       <optional>
         <attribute name="css:border-top-style">
@@ -1838,6 +1882,8 @@
       <ref name="css_att.border-style"/>
       <ref name="css_att.border-width"/>
       <ref name="css_att.border-bottom-color"/>
+      <ref name="css_att.border-bottom-left-radius"/>
+      <ref name="css_att.border-bottom-right-radius"/>
       <ref name="css_att.border-bottom-style"/>
       <ref name="css_att.border-bottom-width"/>
       <ref name="css_att.border-left-color"/>
@@ -1847,6 +1893,8 @@
       <ref name="css_att.border-right-style"/>
       <ref name="css_att.border-right-width"/>
       <ref name="css_att.border-top-color"/>
+      <ref name="css_att.border-top-left-radius"/>
+      <ref name="css_att.border-top-right-radius"/>
       <ref name="css_att.border-top-style"/>
       <ref name="css_att.border-top-width"/>
       <ref name="css_att.bottom"/>
