@@ -15,7 +15,10 @@
 
   <define name="css_att.version">
     <attribute name="css:version">
-      <value>3.0-variant le-tex_Hub-1.2</value>
+      <choice>
+        <value>3.0-variant le-tex_Hub-1.1</value>
+        <value>5.1-variant le-tex_Hub-1.2</value>
+      </choice>
     </attribute>
   </define>
 
