@@ -601,6 +601,37 @@
         <ref name="css_pattern.normal"/>
       </choice>
     </define>
+    
+    <define name="css_pattern.font-variant-numeric">
+      <list>
+        <choice>
+          <value>normal</value>
+          <ref name="css_pattern.inherit"/>
+          <ref name="css_pattern.unset"/>
+          <ref name="css_pattern.initial"/>
+          <group>
+            <optional>
+              <choice>
+                <value>lining-nums</value>
+                <value>oldstyle-nums</value>
+              </choice>
+            </optional>
+            <optional>
+              <choice>
+                <value>proportional-nums</value>
+                <value>tabular-nums</value>
+              </choice>
+            </optional>
+            <optional>
+              <choice>
+                <value>diagonal-fractions</value>
+                <value>stacked-fractions</value>
+              </choice>
+            </optional>
+          </group>
+        </choice>
+      </list>
+    </define>
 
     <define name="css_pattern.font-weight">
       <choice>
@@ -626,6 +657,10 @@
     
     <define name="css_pattern.inherit">
       <value>inherit</value>
+    </define>
+    
+    <define name="css_pattern.initial">
+      <value>initial</value>
     </define>
   
     <define name="css_pattern.length">
@@ -1147,6 +1182,10 @@
       <empty/>
     </define>
 
+    <define name="css_pattern.unset">
+      <value>unset</value>
+    </define>
+    
     <define name="css_pattern.vertical-align">
       <choice>
         <value>top</value>
@@ -1464,7 +1503,7 @@
         </attribute>
       </optional>
     </define>
-  
+    
     <define name="css_att.font-variant">
       <optional>
         <attribute name="css:font-variant">
@@ -1472,7 +1511,15 @@
         </attribute>
       </optional>
     </define>
-  
+
+    <define name="css_att.font-variant-numeric">
+      <optional>
+        <attribute name="css:font-variant-numeric">
+          <ref name="css_pattern.font-variant-numeric"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.font-weight">
       <optional>
         <attribute name="css:font-weight">
@@ -1915,6 +1962,7 @@
       <ref name="css_att.font-stretch"/>
       <ref name="css_att.font-style"/>
       <ref name="css_att.font-variant"/>
+      <ref name="css_att.font-variant-numeric"/>
       <ref name="css_att.font-weight"/>
       <ref name="css_att.height"/>
       <ref name="css_att.hyphens"/>
