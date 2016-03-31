@@ -1188,9 +1188,17 @@
     
     <define name="css_pattern.vertical-align">
       <choice>
+        <value>baseline</value>
+        <value>super</value>
+        <value>sub</value>
         <value>top</value>
+        <value>text-top</value>
         <value>bottom</value>
+        <value>text-bottom</value>
         <value>middle</value>
+        <ref name="css_pattern.length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.inherit"/>
       </choice>
     </define>
     
