@@ -747,7 +747,7 @@
         <value>circle</value>
         <value>diamond</value>
         <value>disc</value>
-        <value>dash</value>
+        <value>hyphen</value>
         <value>square</value>
       </choice>
     </define>
