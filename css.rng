@@ -337,6 +337,55 @@
       </choice>
     </define>
     
+    <define name="css_pattern.bg-image">
+      <choice>
+        <ref name="css_pattern.image"></ref>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.none"/>
+      </choice>
+    </define>
+    
+    <define name="css_pattern.image">
+      <!-- not complete, just to allow gradients for now -->
+<!--      <choice>
+        <ref name="css_pattern.url"/>-->
+        <ref name="css_pattern.gradient"/>
+      <!--</choice>-->
+    </define>
+    
+    
+    <define name="css_pattern.gradient">
+      <choice>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(#[0-9a-fA-F]{3})\s*,(\s*(#[0-9a-fA-F]{3})\s*)*\s*(#[0-9a-fA-F]{3})\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(#[0-9a-fA-F]{6})\s*,(\s*(#[0-9a-fA-F]{6})\s*)*\s*(#[0-9a-fA-F]{6})\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(rgb\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\))\s*,(\s*(rgb\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\))\s*)*\s*(rgb\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(rgb\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*\))\s*,(\s*(rgb\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*\))\s*)*\s*(rgb\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*\))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(rgba\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*,(\s*(rgba\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*)*\s*(rgba\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(rgba\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*,(\s*(rgba\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*)*\s*(rgba\s*\(\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(hsl\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*\))\s*,(\s*(hsl\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*\))\s*)*\s*(hsl\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*\))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(hsla\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*,(\s*(hsla\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*)*\s*(hsla\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*\)</param>
+        </data>
+        <data type="token">
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*,(\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*)*\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*\)</param>
+        </data>
+      </choice>
+    </define>
+    
     <define name="css_pattern.color">
       <a:documentation>http://www.w3.org/TR/css3-color/</a:documentation>
       <choice>
@@ -1239,6 +1288,14 @@
       </optional>
     </define>
 
+    <define name="css_att.background-image">
+      <optional>
+        <attribute name="css:background-image">
+          <ref name="css_pattern.bg-image"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.border-bottom-color">
       <optional>
         <attribute name="css:border-bottom-color">
@@ -1935,6 +1992,7 @@
   <define name="css_attributes">
     <interleave>
       <ref name="css_att.background-color"/>
+      <ref name="css_att.background-image"/>
       <ref name="css_att.border-collapse"/>
       <ref name="css_att.border-color"/>
       <ref name="css_att.border-style"/>
