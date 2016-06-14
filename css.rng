@@ -797,6 +797,8 @@
         <value>diamond</value>
         <value>disc</value>
         <value>hyphen</value>
+      	<value>dash</value>
+      	<!-- allow dash for compatibility reasons-->
         <value>square</value>
       </choice>
     </define>
