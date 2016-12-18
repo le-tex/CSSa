@@ -19,7 +19,7 @@
 
 
   <start combine="choice">
-    <notAllowed/>
+    <ref name="hub.tabs.declaration.element"/>
   </start>
 
   <include href="css.rng"/>
