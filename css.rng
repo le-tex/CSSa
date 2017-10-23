@@ -1138,6 +1138,16 @@
         </optional>
       </list>
     </define>
+    
+    <define name="css_pattern.letter-spacing">
+      <choice>
+        
+        <ref name="css_pattern.normal"/>
+        <ref name="css_pattern.potentially-negative-length"/>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.initial"/>
+      </choice>
+    </define>
 
     <define name="css_pattern.text-shadow">
       <list>
@@ -1898,6 +1908,14 @@
       </optional>
     </define>
   
+  <define name="css_att.letter-spacing">
+      <optional>
+        <attribute name="css:letter-spacing">
+          <ref name="css_pattern.letter-spacing"/>
+        </attribute>
+      </optional>
+    </define>
+  
     <define name="css_att.text-shadow">
       <optional>
         <attribute name="css:text-shadow">
@@ -2068,6 +2086,7 @@
       <ref name="css_att.text-decoration-style"/>
       <ref name="css_att.text-decoration-width"/>
       <ref name="css_att.text-indent"/>
+      <ref name="css_att.letter-spacing"/>
       <ref name="css_att.text-shadow"/>
       <ref name="css_att.text-transform"/>
       <ref name="css_att.text-underline-position"/>
