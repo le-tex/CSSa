@@ -381,7 +381,7 @@
           <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(hsla\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*,(\s*(hsla\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*)*\s*(hsla\s*\((\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*,\s*(\d+(\.\d+)?)%\s*,\s*(\d+(\.\d+)?)%\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*\)</param>
         </data>
         <data type="token">
-          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*,(\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*)*\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\))\s*\)</param>
+          <param name="pattern">(linear|radial)-gradient\((\s*(-?\d+(deg|grad|rad|turn)|to\s*(left|right|top|bottom)),)?\s*(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\)(\s+[\d.]+%?\s*)?,\s*)+(device-cmyk\s*\(\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*,\s*(0|0?\.\d+|1(.0*)?)\s*\)(\s+[\d.]+%?\s*)?)+\)</param>
         </data>
       </choice>
     </define>
