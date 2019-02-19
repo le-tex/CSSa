@@ -1052,6 +1052,15 @@
         </data>
       </choice>
     </define>
+    
+    <define name="css_pattern.table-layout">
+      <choice>
+        <ref name="css_pattern.auto"/>
+        <value>fixed</value>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.initial"/>
+      </choice>
+    </define>
       
     <define name="css_pattern.text-align">
       <list>
@@ -1834,6 +1843,14 @@
       </optional>
     </define>
     
+    <define name="css_att.table-layout">
+      <optional>
+        <attribute name="css:table-layout">
+          <ref name="css_pattern.table-layout"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.text-align">
       <optional>
         <attribute name="css:text-align">
@@ -2078,6 +2095,7 @@
       <ref name="css_att.page-break-inside"/>
       <ref name="css_att.position"/>
       <ref name="css_att.right"/>
+      <ref name="css_att.table-layout"/>
       <ref name="css_att.text-align"/>
       <ref name="css_att.text-align-last"/>
       <ref name="css_att.text-decoration-color"/>
