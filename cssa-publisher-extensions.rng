@@ -44,7 +44,153 @@
         <ref name="css_pattern.boolean"/>
       </attribute>
     </optional>
-  </define>  
+  </define>
+  
+  <define name="hub.att.para-border">
+    <optional>
+      <attribute name="para-border">
+        <a:documentation>
+          Specifies whether a paragraph or adjacent paragraphs 
+          share common borders. This property originates
+          from InDesign's paragraph border feature.
+        </a:documentation>
+        <ref name="css_pattern.boolean"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-color">
+    <optional>
+      <attribute name="para-border-color">
+        <ref name="css_pattern.color"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-style">
+    <optional>
+      <attribute name="para-border-style">
+        <ref name="css_pattern.border-style"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-top-width">
+    <optional>
+      <attribute name="para-border-top-width">
+        <ref name="css_pattern.border-width"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-right-width">
+    <optional>
+      <attribute name="para-border-right-width">
+        <ref name="css_pattern.border-width"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-bottom-width">
+    <optional>
+      <attribute name="para-border-bottom-width">
+        <ref name="css_pattern.border-width"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-left-width">
+    <optional>
+      <attribute name="para-border-left-width">
+        <ref name="css_pattern.border-width"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-padding-top">
+    <optional>
+      <attribute name="para-border-padding-top">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-padding-right">
+    <optional>
+      <attribute name="para-border-padding-right">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-padding-bottom">
+    <optional>
+      <attribute name="para-border-padding-bottom">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-border-padding-left">
+    <optional>
+      <attribute name="para-border-padding-left">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-background">
+    <optional>
+      <attribute name="para-background">
+        <a:documentation>
+          Specifies whether a paragraph or adjacent paragraphs 
+          share a common background color box. This property originates
+          from InDesign's paragraph shading feature.
+        </a:documentation>
+        <ref name="css_pattern.boolean"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-background-color">
+    <optional>
+      <attribute name="para-background-color">
+        <ref name="css_pattern.color"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-background-padding-top">
+    <optional>
+      <attribute name="para-background-padding-top">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-background-padding-right">
+    <optional>
+      <attribute name="para-background-padding-right">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-background-padding-bottom">
+    <optional>
+      <attribute name="para-background-padding-bottom">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
+  
+  <define name="hub.att.para-background-padding-left">
+    <optional>
+      <attribute name="para-background-padding-left">
+        <ref name="css_pattern.padding"/>
+      </attribute>
+    </optional>
+  </define>
   
   <define name="hub.declare.tabs">
     <optional>
