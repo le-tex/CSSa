@@ -33,6 +33,23 @@
       <ref name="hub.att.numbering-starts-at"/>
       <ref name="hub.att.numbering-level"/>
       <ref name="hub.att.numbering-continue"/>
+      <ref name="hub.att.para-border"/>
+      <ref name="hub.att.para-border-color"/>
+      <ref name="hub.att.para-border-style"/>
+      <ref name="hub.att.para-border-top-width"/>
+      <ref name="hub.att.para-border-right-width"/>
+      <ref name="hub.att.para-border-bottom-width"/>
+      <ref name="hub.att.para-border-left-width"/>
+      <ref name="hub.att.para-border-padding-top"/>
+      <ref name="hub.att.para-border-padding-right"/>
+      <ref name="hub.att.para-border-padding-bottom"/>
+      <ref name="hub.att.para-border-padding-left"/>
+      <ref name="hub.att.para-background"/>
+      <ref name="hub.att.para-background-color"/>
+      <ref name="hub.att.para-background-padding-top"/>
+      <ref name="hub.att.para-background-padding-right"/>
+      <ref name="hub.att.para-background-padding-bottom"/>
+      <ref name="hub.att.para-background-padding-left"/>
       <optional>
         <ref name="cssa-doc.comment"/>
       </optional>
