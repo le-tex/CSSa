@@ -1019,6 +1019,14 @@
       </choice>
     </define>
 
+    <define name="css_pattern.neg-padding">
+      <choice>
+        <ref name="css_pattern.potentially-negative-length"/>
+        <ref name="css_pattern.percentage"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+
     <define name="css_pattern.percentage">
       <data type="token">
         <param name="pattern">(\.[0-9]+|[0-9]+\.?([0-9]+)?)%</param>
