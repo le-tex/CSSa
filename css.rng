@@ -1290,6 +1290,19 @@
       </choice>
     </define>
     
+    <define name="css_pattern.white-space">
+      <choice>
+        <value>normal</value>
+        <value>nowrap</value>
+        <value>pre</value>
+        <value>pre-wrap</value>
+        <value>pre-line</value>
+        <ref name="css_pattern.inherit"/>
+        <ref name="css_pattern.initial"/>
+        <ref name="css_pattern.unset"/>
+      </choice>
+    </define>
+    
     <define name="css_pattern.widows">
       <choice>
         <data type="nonNegativeInteger"/>
@@ -1998,6 +2011,14 @@
         </attribute>
       </optional>
     </define>
+    
+    <define name="css_att.white-space">
+      <optional>
+        <attribute name="css:white-space">
+          <ref name="css_pattern.white-space"/>
+        </attribute>
+      </optional>
+    </define>
 
     <define name="css_att.widows">
       <optional>
@@ -2143,6 +2164,7 @@
       <ref name="css_att.top"/>
       <ref name="css_att.transform"/>
       <ref name="css_att.vertical-align"/>
+      <ref name="css_att.white-space"/>
       <ref name="css_att.widows"/>
       <ref name="css_att.width"/>
       <ref name="css_att.z-index"/>
