@@ -1290,6 +1290,30 @@
       </choice>
     </define>
     
+    <define name="css_pattern.text-orientation">
+      <choice>
+        <value>sideways</value>
+        <value>upright</value>
+        <value>mixed</value>
+        <value>sideways-right</value>
+        <value>use-glyph-orientation</value>
+        <ref name="css_pattern.initial"/>
+        <ref name="css_pattern.unset"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>
+
+    <define name="css_pattern.writing-mode">
+      <choice>
+        <value>vertical-lr</value>
+        <value>vertical-rl</value>
+        <value>horizontal-tb</value>
+        <ref name="css_pattern.initial"/>
+        <ref name="css_pattern.unset"/>
+        <ref name="css_pattern.inherit"/>
+      </choice>
+    </define>           
+           
     <define name="css_pattern.white-space">
       <choice>
         <value>normal</value>
@@ -1972,6 +1996,14 @@
       </optional>
     </define>
 
+    <define name="css_att.text-orientation">
+      <optional>
+        <attribute name="css:text-orientation">
+          <ref name="css_pattern.text-orientation"/>
+        </attribute>
+      </optional>
+    </define>
+           
     <define name="css_att.text-transform">
       <optional>
         <attribute name="css:text-transform">
@@ -2036,6 +2068,14 @@
       </optional>
     </define>
     
+    <define name="css_att.writing-mode">
+      <optional>
+        <attribute name="css:writing-mode">
+          <ref name="css_pattern.writing-mode"/>
+        </attribute>
+      </optional>
+    </define>           
+           
     <define name="css_att.z-index">
       <optional>
         <attribute name="css:z-index">
@@ -2156,6 +2196,7 @@
       <ref name="css_att.text-decoration-offset"/>
       <ref name="css_att.text-decoration-style"/>
       <ref name="css_att.text-decoration-width"/>
+      <ref name="css_att.text-orientation"/>
       <ref name="css_att.text-indent"/>
       <ref name="css_att.letter-spacing"/>
       <ref name="css_att.text-shadow"/>
@@ -2167,6 +2208,7 @@
       <ref name="css_att.white-space"/>
       <ref name="css_att.widows"/>
       <ref name="css_att.width"/>
+      <ref name="css_att.writing-mode"/>
       <ref name="css_att.z-index"/>
       <ref name="css_pseudo_att.marker_content"/>
       <ref name="css_pseudo_att.marker_font-family"/>
