@@ -1250,18 +1250,18 @@
     <define name="css_pattern.2d-transform-function">
       <choice>
         <data type="token">
-          <param name="pattern">rotate\s*\(\s*(0|[\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?(deg|grad|rad|turn))\s*\)</param>
+          <param name="pattern">rotate\s*\(\s*(0|[\-\+]?\.[0-9]+|[\-\+]?[0-9]+\.?([0-9]+)?(deg|grad|rad|turn))\s*\)</param>
         </data>
         <data type="token">
-          <param name="pattern">scaleX\s*\(\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*\)</param>
+          <param name="pattern">scaleX\s*\(\s*([\-\+]?\.[0-9]+|[\-\+]?[0-9]+\.?([0-9]+)?)\s*\)</param>
         </data>
         <data type="token">
-          <param name="pattern">scaleY\s*\(\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?)\s*\)</param>
+          <param name="pattern">scaleY\s*\(\s*([\-\+]?\.[0-9]+|[\-\+]?[0-9]+\.?([0-9]+)?)\s*\)</param>
         </data>
         <data type="token">
           <!-- In some versions of jing (for ex. in oXygen 21.1), this pattern doesn’t match 'scale(1.1, 1.65)'
                although it should. 'scale(1.1,1.65)' works -->
-          <param name="pattern">scale\s*\(\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?)(\s*,\s*([\-\+]?\.[0-9]+|[0-9]+\.?([0-9]+)?))?\s*\)</param>
+          <param name="pattern">scale\s*\(\s*([\-\+]?\.[0-9]+|[\-\+]?[0-9]+\.?([0-9]+)?)(\s*,\s*([\-\+]?\.[0-9]+|[\-\+]?[0-9]+\.?([0-9]+)?))?\s*\)</param>
         </data>
       </choice>
     </define>
