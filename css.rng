@@ -580,8 +580,10 @@
       <choice>
         <value>inline</value>
         <value>block</value>
+        <value>grid</value>
         <value>list-item</value>
         <value>inline-block</value>
+        <value>inline-grid</value>
         <value>table</value>
         <value>inline-table</value>
         <value>table-row-group</value>
@@ -1669,6 +1671,22 @@
       </optional>
     </define>
     
+    <define name="css_att.grid-template-columns">
+      <optional>
+        <attribute name="css:grid-template-columns">
+          <text/>
+        </attribute>
+      </optional>
+    </define>
+    
+    <define name="css_att.grid-template-rows">
+      <optional>
+        <attribute name="css:grid-template-rows">
+          <text/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.height">
       <optional>
         <attribute name="css:height">
@@ -2159,6 +2177,8 @@
       <ref name="css_att.font-style"/>
       <ref name="css_att.font-variant"/>
       <ref name="css_att.font-variant-numeric"/>
+      <ref name="css_att.grid-template-columns"/>
+      <ref name="css_att.grid-template-rows"/>
       <ref name="css_att.font-weight"/>
       <ref name="css_att.height"/>
       <ref name="css_att.hyphens"/>
