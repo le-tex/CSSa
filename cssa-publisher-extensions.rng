@@ -46,6 +46,18 @@
     </optional>
   </define>
   
+  <define name="hub.att.numbering-multilevel-type">
+    <optional>
+      <attribute name="numbering-multilevel-type">
+        <choice>
+          <value>single</value>
+          <value>multi</value>
+          <value>hybridmulti</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  
   <define name="hub.att.para-border">
     <optional>
       <attribute name="para-border">

@@ -33,6 +33,7 @@
       <ref name="hub.att.numbering-starts-at"/>
       <ref name="hub.att.numbering-level"/>
       <ref name="hub.att.numbering-continue"/>
+      <ref name="hub.att.numbering-multilevel-type"/>
       <ref name="hub.att.para-border"/>
       <ref name="hub.att.para-border-color"/>
       <ref name="hub.att.para-border-style"/>
