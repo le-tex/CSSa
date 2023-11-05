@@ -599,6 +599,13 @@
       </choice>
     </define>
 
+    <define name="css_pattern.drop-or-raise">
+      <choice>
+        <value>drop</value>
+        <value>raise</value>
+      </choice>
+    </define>
+
     <define name="css_pattern.each-line">
       <value>each-line</value>
     </define>
@@ -715,8 +722,44 @@
       <value>initial</value>
     </define>
     
+    <define name="css_pattern.initial-letter">
+      <choice>
+        <ref name="css_pattern.normal"/>
+        <list>
+          <ref name="css_pattern.number-ge-1"/>
+          <ref name="css_pattern.integer-ge-1"/>
+        </list>
+        <choice><!-- cannot use interleave for data values -->
+          <list>
+            <ref name="css_pattern.number-ge-1"/>
+            <optional>
+              <choice>
+                <value>drop</value>
+                <value>raise</value>
+              </choice>
+            </optional>
+          </list>
+          <list>
+            <optional>
+              <choice>
+                <value>drop</value>
+                <value>raise</value>
+              </choice>
+            </optional>
+            <ref name="css_pattern.number-ge-1"/>
+          </list>
+        </choice>
+      </choice>
+    </define>
+    
     <define name="css_pattern.integer">
       <data type="integer"/>
+    </define>
+    
+    <define name="css_pattern.integer-ge-1">
+      <data type="token">
+        <param name="pattern">([1-9][0-9]*)</param>
+      </data>
     </define>
     
     <define name="css_pattern.length">
@@ -995,6 +1038,12 @@
     <define name="css_pattern.number">
       <data type="token">
         <param name="pattern">[\-+]?(\.[0-9]+|[0-9]+\.?([0-9]+)?)</param>
+      </data>
+    </define>
+    
+    <define name="css_pattern.number-ge-1">
+      <data type="token">
+        <param name="pattern">([1-9][0-9]*\.?([0-9]+)?)</param>
       </data>
     </define>
 
@@ -1703,6 +1752,14 @@
       </optional>
     </define>
     
+    <define name="css_att.initial-letter">
+      <optional>
+        <attribute name="css:initial-letter">
+          <ref name="css_pattern.initial-letter"/>
+        </attribute>
+      </optional>
+    </define>
+    
     <define name="css_att.left">
       <optional>
         <attribute name="css:left">
@@ -2182,6 +2239,7 @@
       <ref name="css_att.font-weight"/>
       <ref name="css_att.height"/>
       <ref name="css_att.hyphens"/>
+      <ref name="css_att.initial-letter"/>
       <ref name="css_att.left"/>
       <ref name="css_att.line-height"/>
       <ref name="css_att.list-style-type"/>
