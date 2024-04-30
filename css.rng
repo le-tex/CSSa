@@ -1104,6 +1104,14 @@
         <param name="pattern">(larger|smaller)</param>
       </data>
     </define>
+    
+    <define name="css_pattern.revert">
+      <value>revert</value>
+    </define>
+    
+    <define name="css_pattern.revert-layer">
+      <value>revert-layer</value>
+    </define>
   
     <define name="css_pattern.string-literal">
       <a:documentation>A quoted string</a:documentation>
@@ -1359,6 +1367,9 @@
         <value>vertical-lr</value>
         <value>vertical-rl</value>
         <value>horizontal-tb</value>
+        <!-- next two values are recommendation candidates only, but widely supported. -->
+        <value>sideways-rl</value>
+        <value>sideways-lr</value>
         <ref name="css_pattern.initial"/>
         <ref name="css_pattern.unset"/>
         <ref name="css_pattern.inherit"/>
